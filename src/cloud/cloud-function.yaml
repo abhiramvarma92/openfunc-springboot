@@ -1,0 +1,26 @@
+apiVersion: core.openfunction.io/v1beta2
+kind: Function
+metadata:
+  name: function-cloudevent-java
+spec:
+  version: "v2.0.0"
+  image: "abhiramvarma/sample-cloudevent-func:v1"
+  imageCredentials:
+    name: push-secret
+  build:
+    builder: openfunction/builder-java:v2-18
+    env:
+      FUNC_NAME: "com.example.demo.CloudEventFunctionImpl"
+      FUNC_CLEAR_SOURCE: "true"
+    srcRepo:
+      url: "https://github.com/OpenFunction/samples.git"
+      sourceSubPath: "functions/knative/java"
+      revision: "main"
+  serving:
+    template:
+      containers:
+        - name: function # DO NOT change this
+          imagePullPolicy: IfNotPresent
+    triggers:
+      http:
+        port: 8080
