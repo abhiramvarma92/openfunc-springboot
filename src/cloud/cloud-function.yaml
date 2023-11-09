@@ -1,0 +1,28 @@
+apiVersion: core.openfunction.io/v1beta2
+kind: Function
+metadata:
+  name: function-cloud-spring-java
+spec:
+  version: "v2.0.0"
+  image: "abhiramvarma/func-cloud-spring-java:latest"
+  imageCredentials:
+    name: push-docker-secret
+  build:
+    builder: openfunction/builder-java:v2-18
+    env:
+      FUNC_NAME: "com.example.demo.CloudEventFunctionImpl"
+      FUNC_CLEAR_SOURCE: "true"
+    srcRepo:
+      url: "https://github.com/abhiramvarma92/openfunc-springboot.git"
+      sourceSubPath: "."
+      revision: "master"
+      credentials:
+        name: login-secret
+  serving:
+    template:
+      containers:
+        - name: function # DO NOT change this
+          imagePullPolicy: Always
+    triggers:
+      http:
+        port: 8080
