@@ -6,16 +6,16 @@ spec:
   version: "v2.0.0"
   image: "abhiramvarma/func-cloud-spring-java:latest"
   imageCredentials:
-    name: push-docker-secret
+    name: push-cloud-secret-java
   build:
     builder: openfunction/builder-java:v2-18
     env:
-      FUNC_NAME: "com.example.demo.CloudEventFunctionImpl"
+      FUNC_NAME: "com.example.openfunc.CloudEventFunctionImpl"
       FUNC_CLEAR_SOURCE: "true"
     srcRepo:
       url: "https://github.com/abhiramvarma92/openfunc-springboot.git"
       sourceSubPath: "."
-      revision: "master"
+      revision: "feature-initial"
       credentials:
         name: login-secret
   serving:
