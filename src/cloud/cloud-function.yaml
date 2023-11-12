@@ -6,7 +6,7 @@ spec:
   version: "v2.0.0"
   image: "abhiramvarma/func-cloud-spring-java:latest"
   imageCredentials:
-    name: push-cloud-secret-java
+    name: push-secret
   build:
     builder: openfunction/builder-java:v2-18
     env:
